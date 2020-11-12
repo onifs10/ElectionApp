@@ -18,9 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="lga-form">
 <?php $form = ActiveForm::begin()?>
 <?= $form->field($model , 'lga[]')->checkboxList(
-    ArrayHelper::map(Lga::find()->all(),'lga_id','lga_name'),
-    
-) ?>
+    ArrayHelper::map(Lga::find()->all(),'lga_id','lga_name')) ?>
 
 <div class="form-group">
         <?= Html::submitButton('Get Results', ['class' => 'btn btn-success']) ?>
