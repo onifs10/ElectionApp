@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\Query;
 
 /**
  * This is the model class for table "lga".
@@ -66,14 +67,9 @@ class Lga extends \yii\db\ActiveRecord
     {
         return $this->hasOne(States::class, ['state_id' =>'state_id']);
     }
-    public function getPu()
+
+    public function getResults()
     {
-        $ids =  $this->hasMany(PollingUnit::class,['lga_id' => 'lga_id'])->select('uniqueid')->asArray()->all();
-        $array = [];
-        foreach($ids as $id)
-        {
-            $array[] = (int) $id['uniqueid'];
-        }
-        return AnnouncedPuResults::find()->select('SUM(party_score) as party_score , party_abbreviation')->where(['in','polling_unit_uniqueid', $array])->groupBy('party_abbreviation')->all();
+        return (new Query())->select('sum(announced_pu_results.party_score) as party_score, announced_pu_results.party_abbreviation')->from('lga')->join('JOIN','polling_unit','lga.lga_id = polling_unit.lga_id')->join( 'JOIN','announced_pu_results',' polling_unit.uniqueid = announced_pu_results.polling_unit_uniqueid')->where(['lga.lga_id' => $this->lga_id])->groupBy('announced_pu_results.party_abbreviation')->all();
     }
 }

@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use app\components\ResultTableWidget;
+use app\components\ResultTable2Widget;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Lga */
@@ -44,9 +45,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
     <?= Html::a('view Wards',['/wards','lga' => $model->lga_id],['class' => 'btn btn-info' ]) ?>
-    <?= 
-      ResultTableWidget::widget(
-        ['models' => $model->pu]
+     <?= 
+      ResultTable2Widget::widget(
+        ['models' => $model->results]
     ); ?>
-
 </div>

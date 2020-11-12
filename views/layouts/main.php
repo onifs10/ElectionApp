@@ -43,7 +43,8 @@ AppAsset::register($this);
             ['label' => 'Lgas', 'url' => ['/lga']],
             ['label' => 'Wards', 'url' => ['/wards']],
             ['label' => 'Polling Units', 'url' => ['/polling-unit']],
-            ['label' => 'Results', 'url' => ['/results']],
+            ['label' => 'Lga Results','url' => ['/lga-results']],
+            ['label' => 'All Results', 'url' => ['/results']],
             ['label' => 'Parties', 'url' => ['/party']],
             // Yii::$app->user->isGuest ? (
             //     ['label' => 'Login', 'url' => ['/site/login']]
